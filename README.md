@@ -11,4 +11,4 @@ Installation
 
     fisher install akhilman/fish-prompt-hline
 
-    Then restart fish or do `$ . ~/.config/fish/conf.d/prompt_hline_init.fish`
+Then restart fish or call `$ . ~/.config/fish/conf.d/prompt_hline_init.fish`

@@ -43,9 +43,7 @@ function fish_right_prompt
     end
 
     # vcs
-    if functions -q __fish_vcs_prompt
-        set vcs_prompt (set_color $fish_color_vcs) (__fish_vcs_prompt)
-    end
+    set vcs_prompt (set_color $fish_color_vcs) (__fish_vcs_prompt)
 
     # venv
     if [ -n "$VIRTUAL_ENV" ]

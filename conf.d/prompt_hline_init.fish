@@ -71,5 +71,7 @@ end
 
 # drawing hline
 function __fish_hline_prompt_preprompt --on-event fish_prompt
-    echo (fish_hline_prompt)
+    if not functions -q powerline-setup  # hack to disable when powerline used
+        echo (fish_hline_prompt)
+    end
 end

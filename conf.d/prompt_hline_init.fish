@@ -10,8 +10,8 @@ set -qU fish_color_duration; or set -U fish_color_duration blue
 set -qU fish_color_time; or set -U fish_color_time white
 set -qU fish_color_vcs; or set -U fish_color_vcs yellow
 set -qU fish_color_venv; or set -U fish_color_venv magenta
-set -qU fish_color_cwd_root; or set -U fish_color_cwd_root red
-set -qU fish_color_cwd; or set -U fish_color_cwd green
+set -qU fish_color_cwd_root; or set -U fish_color_cwd_root -o red
+set -qU fish_color_cwd; or set -U fish_color_cwd -o green
 
 # repaint
 function __fish_repaint_status --on-variable fish_color_status

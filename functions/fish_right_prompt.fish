@@ -8,6 +8,7 @@ function fish_right_prompt
     set -l prompt_line
     set -l vcs_prompt
     set -l venv_prompt
+    set -l normal (set_color normal)
 
     # status
 	if test $last_status -ne 0
@@ -33,26 +34,25 @@ function fish_right_prompt
         if [ $m -gt 0 ]
             set duration_prompt $duration_prompt " " $m "m"
         end
-        set duration_prompt $duration_prompt " " $s "s"
+        set duration_prompt $duration_prompt " " $s "s" $normal
     end
 
     # jobs
     set -l number_jobs (jobs | wc -l)
     if [ $number_jobs -gt 0 ]
-        set njobs_prompt " " (set_color $fish_color_njobs) "<$number_jobs>"
+        set njobs_prompt " " (set_color $fish_color_njobs) "<$number_jobs>" $normal
     end
 
     # vcs
-    set vcs_prompt (set_color $fish_color_vcs) (__fish_vcs_prompt)
+    set vcs_prompt (set_color $fish_color_vcs) (__fish_vcs_prompt) $normal
 
     # venv
     if [ -n "$VIRTUAL_ENV" ]
-        set venv_prompt " " (set_color $fish_color_venv) "[" (basename $VIRTUAL_ENV) "]"
+        set venv_prompt " " (set_color $fish_color_venv) "[" (basename $VIRTUAL_ENV) "]" $normal
     end
 
     # time
-    set time_prompt " " (set_color $fish_color_time) (date "+%k:%M")
+    set time_prompt " " (set_color $fish_color_time) (date "+%k:%M") $normal
 
-    echo -sn $status_prompt $duration_prompt $njobs_prompt $vcs_prompt $venv_prompt $time_prompt (set_color normal) " "
-
+    echo -sn $status_prompt $duration_prompt $njobs_prompt $vcs_prompt $venv_prompt $time_prompt " "
 end

@@ -2,6 +2,10 @@
 
 function fish_prompt --description 'Write out the prompt'
 
+    if not functions -q powerline-setup  # hack to disable when powerline used
+        echo (fish_hline_prompt)
+    end
+
 	# Just calculate this once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname
 		set -g __fish_prompt_hostname (hostname|cut -d . -f 1)

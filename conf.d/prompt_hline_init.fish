@@ -41,37 +41,26 @@ function __fish_repaint_venv --on-variable fish_color_venv
 end
 function __fish_repaint_user --on-variable fish_color_user
     if status --is-interactive
-        echo (fish_hline_prompt)
         commandline -f repaint ^/dev/null
     end
 end
 function __fish_repaint_host --on-variable fish_color_host
     if status --is-interactive
-        echo (fish_hline_prompt)
         commandline -f repaint ^/dev/null
     end
 end
 function __fish_repaint_cwd_root --on-variable fish_color_cwd_root
     if status --is-interactive
-        echo (fish_hline_prompt)
         commandline -f repaint ^/dev/null
     end
 end
 function __fish_repaint_cwd --on-variable fish_color_cwd
     if status --is-interactive
-        echo (fish_hline_prompt)
         commandline -f repaint ^/dev/null
     end
 end
 function __fish_repaint_bind_mode --on-variable fish_key_bindings
     if status --is-interactive
         commandline -f repaint ^/dev/null
-    end
-end
-
-# drawing hline
-function __fish_hline_prompt_preprompt --on-event fish_prompt
-    if not functions -q powerline-setup  # hack to disable when powerline used
-        echo (fish_hline_prompt)
     end
 end

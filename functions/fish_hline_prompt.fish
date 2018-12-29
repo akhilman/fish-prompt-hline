@@ -7,13 +7,13 @@ function fish_hline_prompt
     set -l prompt_left
     set -l prompt_right
     set -l prompt_line
+	set -l color_cwd
 
 	# Just calculate this once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname
 		set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
 	end
 
-	set -l color_cwd
 	switch $USER
 	case root toor
 		if set -q fish_color_cwd_root

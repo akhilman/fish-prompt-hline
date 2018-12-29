@@ -20,10 +20,10 @@ function fish_right_prompt
 
         set duration_prompt (set_color $fish_color_duration)
 
-        set -l d (math "$CMD_DURATION / 1000 / 60 / 60 / 24")
-        set -l h (math "$CMD_DURATION / 1000 / 60 / 60 % 24")
-        set -l m (math "$CMD_DURATION / 1000 / 60 % 60")
-        set -l s (math "$CMD_DURATION / 1000 % 60")
+        set -l d (math -s0 "$CMD_DURATION / 1000 / 60 / 60 / 24")
+        set -l h (math -s0 "$CMD_DURATION / 1000 / 60 / 60 % 24")
+        set -l m (math -s0 "$CMD_DURATION / 1000 / 60 % 60")
+        set -l s (math -s0 "$CMD_DURATION / 1000 % 60")
 
         if [ $d -gt 0 ]
             set duration_prompt $duration_prompt " " $d "d"

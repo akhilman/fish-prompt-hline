@@ -9,6 +9,6 @@ Installation
 
 ### [Fisherman](https://github.com/fisherman/fisherman)
 
-    fisher install akhilman/fish-prompt-hline
+    fisher add akhilman/fish-prompt-hline
 
 Then restart fish or call `$ . ~/.config/fish/conf.d/prompt_hline_init.fish`

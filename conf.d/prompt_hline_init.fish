@@ -3,7 +3,7 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
 # prompt colors
 function generate_color
-    echo $argv | sha256sum | tail --bytes +32 | head --bytes 6
+    echo $argv | sha1sum | tail --bytes +8 | head --bytes 6
 end
 set -qU fish_color_user; or set -U fish_color_user -o (generate_color (whoami))
 set -qU fish_color_host; or set -U fish_color_host (generate_color (hostname))

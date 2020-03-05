@@ -3,7 +3,7 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
 # default colors
 function generate_color
-    set -l available_colors blue green yellow cyan white magenta
+    set -l available_colors green yellow cyan white magenta blue
     set -l host_color $available_colors[(math \
         (printf "%d" 0x(echo $argv | sha256sum | head --bytes 4)) \
         % (count $available_colors) + 1)]

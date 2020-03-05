@@ -2,12 +2,15 @@
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
 # default colors
-set -l available_colors blue green yellow cyan white magenta
-set -l host_color $available_colors[(math \
-	(printf "%d" 0x(hostname | sha256sum | head --bytes 4)) \
-	% (count $available_colors) + 1)]
-set -qU fish_color_user; or set -U fish_color_user -o green
-set -qU fish_color_host; or set -U fish_color_host -o $host_color
+function generate_color
+    set -l available_colors blue green yellow cyan white magenta
+    set -l host_color $available_colors[(math \
+        (printf "%d" 0x(echo $argv | sha256sum | head --bytes 4)) \
+        % (count $available_colors) + 1)]
+    echo $host_color
+end
+set -qU fish_color_user; or set -U fish_color_user -o (generate_color (whoami))
+set -qU fish_color_host; or set -U fish_color_host -o (generate_color (hostname))
 set -qU fish_color_njobs; or set -U fish_color_njobs green
 set -qU fish_color_status; or set -U fish_color_status red
 set -qU fish_color_duration; or set -U fish_color_duration blue

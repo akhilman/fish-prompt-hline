@@ -26,4 +26,4 @@ Or do:
 set -U fish_color_host blue
 set -U fish_color_user -o white
 ```
-See man color for more info.
+See `man set_color` for more info.

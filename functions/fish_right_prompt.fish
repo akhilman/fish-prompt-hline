@@ -1,19 +1,28 @@
 #/usr/bin/fish
 
 function fish_right_prompt
-
-	set -l last_status $status
+    set -l last_pipestatus $pipestatus
+    set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
     set -l duration_prompt
     set -l time_prompt
     set -l prompt_line
     set -l vcs_prompt
     set -l venv_prompt
     set -l normal (set_color normal)
+    set -q fish_color_status; or set -l fish_color_status --background=red white
 
-    # status
-	if test $last_status -ne 0
-		set status_prompt (set_color $fish_color_status) " [$last_status]"
-	end
+    # pipestatus
+    # The status code was stollen from default fish prompt.
+    # If the status was carried over (e.g. after `set`), don't bold it.
+    set -l bold_flag --bold
+    set -q __fish_prompt_status_generation; or set -g __fish_prompt_status_generation $status_generation
+    if test $__fish_prompt_status_generation = $status_generation
+        set bold_flag
+    end
+    set __fish_prompt_status_generation $status_generation
+    set -l status_color (set_color $fish_color_status)
+    set -l statusb_color (set_color $bold_flag $fish_color_status)
+    set -l pipestatus_prompt (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
 
     # duration
     if test -n "$CMD_DURATION" -a "$CMD_DURATION" -gt 10000
@@ -54,5 +63,5 @@ function fish_right_prompt
     # time
     set time_prompt " " (set_color $fish_color_time) (date "+%k:%M") $normal
 
-    echo -sn $status_prompt $duration_prompt $njobs_prompt $vcs_prompt $venv_prompt $time_prompt " "
+    echo -sn $pipestatus_prompt $duration_prompt $njobs_prompt $vcs_prompt $venv_prompt $time_prompt " "
 end

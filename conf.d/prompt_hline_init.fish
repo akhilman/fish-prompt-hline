@@ -8,7 +8,7 @@ end
 set -qU fish_color_user; or set -U fish_color_user -o (generate_color (whoami))
 set -qU fish_color_host; or set -U fish_color_host (generate_color (hostname))
 set -qU fish_color_njobs; or set -U fish_color_njobs green
-set -qU fish_color_status; or set -U fish_color_status red
+set -qU fish_color_status; or set -U fish_color_status --background red white
 set -qU fish_color_duration; or set -U fish_color_duration blue
 set -qU fish_color_time; or set -U fish_color_time white
 set -qU fish_color_vcs; or set -U fish_color_vcs yellow

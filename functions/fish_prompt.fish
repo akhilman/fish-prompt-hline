@@ -27,5 +27,5 @@ function fish_prompt --description 'Write out the prompt'
 	end
 
     set -l normal (set_color normal)
-	echo -n -s (set_color $fish_color_host) "`--" $normal (set_color $color_cwd) $suffix $normal " "
+	echo -n -s (set_color $fish_color_host) "`--" $normal (set_color $color_cwd) $suffix $normal " " (fish_default_mode_prompt)
 end

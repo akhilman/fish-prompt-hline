@@ -2,9 +2,9 @@
 
 function fish_prompt --description 'Write out the prompt'
 
-    if not functions -q powerline-setup  # hack to disable when powerline used
-        echo (fish_hline_prompt)
-    end
+	if not functions -q powerline-setup  # hack to disable when powerline used
+		echo (fish_hline_prompt)
+	end
 
 	# Just calculate this once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname
@@ -26,6 +26,6 @@ function fish_prompt --description 'Write out the prompt'
 		set suffix '>'
 	end
 
-    set -l normal (set_color normal)
+	set -l normal (set_color normal)
 	echo -n -s (set_color $fish_color_host) "`--" $normal (set_color $color_cwd) $suffix $normal " " (fish_default_mode_prompt)
 end

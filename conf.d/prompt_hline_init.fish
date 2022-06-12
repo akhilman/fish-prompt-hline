@@ -3,7 +3,7 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
 # prompt colors
 function generate_color
-    echo $argv | sha1sum | tail --bytes +8 | head --bytes 6
+	echo $argv | sha1sum | tail --bytes +8 | head --bytes 6
 end
 set -qU fish_color_user; or set -U fish_color_user -o (generate_color (whoami))
 set -qU fish_color_host; or set -U fish_color_host (generate_color (hostname))
@@ -41,52 +41,52 @@ set -qU fish_pager_color_progress; or set -U fish_pager_color_progress cyan
 
 # repaint
 function __fish_repaint_status --on-variable fish_color_status
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_duration --on-variable fish_color_duration
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_time --on-variable fish_color_time
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_vcs --on-variable fish_color_vcs
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_venv --on-variable fish_color_venv
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_user --on-variable fish_color_user
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_host --on-variable fish_color_host
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_cwd_root --on-variable fish_color_cwd_root
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_cwd --on-variable fish_color_cwd
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end
 function __fish_repaint_bind_mode --on-variable fish_key_bindings
-    if status --is-interactive
-        commandline -f repaint 2>/dev/null
-    end
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
 end

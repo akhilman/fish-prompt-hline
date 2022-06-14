@@ -5,10 +5,11 @@ function hline_prompt_generate_color \
     set -l S 40  # 0 ... 100
     set -l V 90  # 0 ... 100
 
-	set -l hash (echo $argv | sha1sum | head -c 40)
-	for n in (seq 1 2 40)
-		set H (math --scale 0 "($H + 0x"(string sub -s $n -l 2 $hash)") % 360")
+	set -l hash (echo $argv | md5sum | head -c 32)
+	for n in (seq 1 4 32)
+		set H (math --scale 0 "bitxor($H, 0x"(string sub -s $n -l 4 $hash)")")
 	end
+	set H (math --scale 3 "$H / 0xffff * 360")
 
 	# echo H $H S $S V $V
 
@@ -50,21 +51,9 @@ function hline_prompt_generate_color \
 	
 	# echo R1 $R G1 $G B1 $B
 
-	# TODO: Use min/max when Debian 12 will be released
-	# Fish 3.1.2 in Debian 11 does not have min/max functions in math
-	# set R (math --scale 0 "min(255, max(0, (($R + $m) * 255)))")
-	# set G (math --scale 0 "min(255, max(0, (($G + $m) * 255)))")
-	# set B (math --scale 0 "min(255, max(0, (($B + $m) * 255)))")
-	
-	set R (math --scale 0 "($R + $m) * 255")
-	set G (math --scale 0 "($G + $m) * 255")
-	set B (math --scale 0 "($B + $m) * 255")
-	if [ $R -lt 0 ]; set R 0; end
-	if [ $R -gt 255 ]; set R 255; end
-	if [ $G -lt 0 ]; set G 0; end
-	if [ $G -gt 255 ]; set G 255; end
-	if [ $B -lt 0 ]; set B 0; end
-	if [ $B -gt 255 ]; set B 255; end
+	set R (math --scale 0 "min(255, max(0, (($R + $m) * 255)))")
+	set G (math --scale 0 "min(255, max(0, (($G + $m) * 255)))")
+	set B (math --scale 0 "min(255, max(0, (($B + $m) * 255)))")
 	
 	# echo R $R G $G B $B
 

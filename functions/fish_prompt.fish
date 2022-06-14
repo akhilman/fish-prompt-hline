@@ -3,6 +3,7 @@
 function fish_prompt --description 'Write out the prompt'
 
 	set -qU fish_color_hline; or set -l fish_color_hline (hline_prompt_generate_color {$USER}@{$hostname})
+	set -qU fish_color_cwd; or set -l fish_color_cwd (hline_prompt_generate_color $PWD)
 
 	if not functions -q powerline-setup  # hack to disable when powerline used
 		echo (fish_hline_prompt)

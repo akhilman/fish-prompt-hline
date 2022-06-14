@@ -11,6 +11,7 @@ function fish_hline_prompt
 	set -qU fish_color_hline; or set -l fish_color_hline (hline_prompt_generate_color {$USER}@{$hostname})
 	set -qU fish_color_user; or set -l fish_color_user (hline_prompt_generate_color $USER)
 	set -qU fish_color_host; or set -l fish_color_host (hline_prompt_generate_color $hostname)
+	set -qU fish_color_cwd; or set -l fish_color_cwd (hline_prompt_generate_color $PWD)
 
 	# Just calculate this once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname

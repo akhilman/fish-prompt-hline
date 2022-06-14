@@ -10,8 +10,6 @@ function hline_prompt_generate_color \
 		set H (math --scale 0 "($H + 0x"(string sub -s $n -l 2 $hash)") % 360")
 	end
 
-    set -l H (math --scale 2 "$H * 360 / 266")
-
 	# echo H $H S $S V $V
 
     set -l C (math --scale 3 "($V / 100) * ($S / 100)")

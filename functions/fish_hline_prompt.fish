@@ -8,10 +8,11 @@ function fish_hline_prompt
 	set -l prompt_right
 	set -l prompt_line
 	set -l color_cwd
+	set -qU fish_color_hline; or set -l fish_color_hline (hline_prompt_generate_color {$USER}@{$hostname})
 
 	# Just calculate this once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname
-		set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+		set -g __fish_prompt_hostname (echo $hostname|cut -d . -f 1)
 	end
 
 	switch $USER
@@ -34,9 +35,9 @@ function fish_hline_prompt
 	end
 
 	set -l normal (set_color normal)
-	set prompt_left (set_color $fish_color_host) "(" $normal (set_color $color_cwd) (prompt_pwd) $normal (set_color $fish_color_host) ")" $normal
-	set prompt_right (set_color $fish_color_host) "(" $normal (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) "$__fish_prompt_hostname" (set_color $fish_color_host) ")" $normal
+	set prompt_left (set_color $fish_color_hline) "(" $normal (set_color $color_cwd) (prompt_pwd) $normal (set_color $fish_color_hline) ")" $normal
+	set prompt_right (set_color $fish_color_hline) "(" $normal (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) "$__fish_prompt_hostname" (set_color $fish_color_hline) ")" $normal
 
-	echo -sn (set_color $fish_color_host) ".-" $prompt_left (set_color $fish_color_host) $prompt_line $prompt_right (set_color $fish_color_host) "-" $normal
+	echo -sn (set_color $fish_color_hline) ".-" $prompt_left (set_color $fish_color_hline) $prompt_line $prompt_right (set_color $fish_color_hline) "-" $normal
 
 end

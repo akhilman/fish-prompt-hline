@@ -40,12 +40,17 @@ set -qU fish_pager_color_prefix; or set -U fish_pager_color_prefix cyan
 set -qU fish_pager_color_progress; or set -U fish_pager_color_progress cyan
 
 # repaint
-function __fish_repaint_status --on-variable fish_color_status
+function __fish_repaint_duration --on-variable fish_color_duration
 	if status --is-interactive
 		commandline -f repaint 2>/dev/null
 	end
 end
-function __fish_repaint_duration --on-variable fish_color_duration
+function __fish_repaint_duration --on-variable fish_color_njobs
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
+function __fish_repaint_status --on-variable fish_color_status
 	if status --is-interactive
 		commandline -f repaint 2>/dev/null
 	end

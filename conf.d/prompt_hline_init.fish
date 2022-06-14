@@ -1,15 +1,5 @@
-
+# We have own virualenv prompt
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
-
-# Hline specific  colors
-set -qU fish_color_duration; or set -U fish_color_duration blue
-set -qU fish_color_njobs; or set -U fish_color_njobs green
-set -qU fish_color_status; or set -U fish_color_status --background red white
-set -qU fish_color_time; or set -U fish_color_time white
-set -qU fish_color_vcs; or set -U fish_color_vcs yellow
-set -qU fish_color_venv; or set -U fish_color_venv magenta
-# Use `set -U fish_color_hline <color> to set the horizontal line color`
-# By default line color is generated from username and hostname
 
 # repaint
 function __fish_repaint_duration --on-variable fish_color_duration

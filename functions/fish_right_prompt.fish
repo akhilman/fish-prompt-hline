@@ -3,6 +3,15 @@
 function fish_right_prompt \
 	--description "Display the right prompt"
 
+	set -q fish_color_duration; or set -l fish_color_duration blue
+	set -q fish_color_njobs; or set -l fish_color_njobs green
+	set -q fish_color_status; or set -l fish_color_status --background red white
+	set -q fish_color_time; or set -l fish_color_time white
+	set -q fish_color_vcs
+		or set -l fish_color_venv (hline_prompt_generate_color (__fish_vcs_prompt))
+	set -q fish_color_venv
+		or set -l fish_color_venv (hline_prompt_generate_color $VIRTUAL_ENV)
+
 	set -l last_pipestatus $pipestatus
 	set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
 	set -l duration_prompt
@@ -11,7 +20,6 @@ function fish_right_prompt \
 	set -l vcs_prompt
 	set -l venv_prompt
 	set -l normal (set_color normal)
-	set -q fish_color_status; or set -l fish_color_status --background=red white
 
 	# pipestatus
 	# The status code was stollen from default fish prompt.

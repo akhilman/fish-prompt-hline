@@ -17,10 +17,18 @@ Then restart fish or call `$ . ~/.config/fish/conf.d/prompt_hline_init.fish`
 Choose a colorscheme with
 [`fish_config`](https://fishshell.com/docs/current/cmds/fish_config.html).
 
-If you do not like the horizontal line color generated from the username and hostname change it with `set -U fish_color_hline #RRGGBB`.
+If you do not like the horizontal line color generated from the username and hostname change it with `set -U fish_color_hline RRGGBB`.
 See `man set_color` for more options.
 
+Unset colors for user and host to allow prompt to generate them for you:
+
+```fish
+set -eU fish_color_user
+set -eU fish_color_host
+```
+
 Set colours of the right prompt:
+
 ```fish
 set -U fish_color_duration blue
 set -U fish_color_njobs green

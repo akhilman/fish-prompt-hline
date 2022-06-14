@@ -5,8 +5,8 @@ function hline_prompt_generate_color \
     set -l S 40  # 0 ... 100
     set -l V 90  # 0 ... 100
 
-	set -l hash (echo $argv | md5sum | head -c 32)
-	for n in (seq 1 2 32)
+	set -l hash (echo $argv | sha1sum | head -c 40)
+	for n in (seq 1 2 40)
 		set H (math --scale 0 "($H + 0x"(string sub -s $n -l 2 $hash)") % 360")
 	end
 
@@ -72,3 +72,5 @@ function hline_prompt_generate_color \
 
 	echo $color
 end
+
+# hline_prompt_generate_color $argv

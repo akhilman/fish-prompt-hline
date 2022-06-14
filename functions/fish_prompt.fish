@@ -1,6 +1,7 @@
 #/usr/bin/fish
 
-function fish_prompt --description 'Write out the prompt'
+function fish_prompt \
+	--description 'Display the left prompt'
 
 	set -q fish_color_hline; or set -l fish_color_hline (hline_prompt_generate_color {$USER}@{$hostname})
 	set -q fish_color_cwd; or set -l fish_color_cwd (hline_prompt_generate_color $PWD)

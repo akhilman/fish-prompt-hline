@@ -1,6 +1,8 @@
 #/usr/bin/fish
 
-function fish_right_prompt
+function fish_right_prompt \
+	--description "Display the right prompt"
+
 	set -l last_pipestatus $pipestatus
 	set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
 	set -l duration_prompt

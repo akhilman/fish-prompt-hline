@@ -2,7 +2,8 @@
 # Bell and execution time
 ##
 
-function fish_hline_prompt
+function fish_hline_prompt \
+	--description "Draw horizontal line over shell prompt"
 
 	set -l prompt_left
 	set -l prompt_right

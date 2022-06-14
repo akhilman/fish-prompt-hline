@@ -1,5 +1,5 @@
 function hline_prompt_generate_color \
-	-d "Generate pseudorandom color form string seed"
+	--description "Generate pseudorandom color form string seed"
 
 	set -l H 0  # 0 ... 360
     set -l S 40  # 0 ... 100

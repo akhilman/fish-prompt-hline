@@ -2,8 +2,8 @@ function hline_prompt_generate_color \
 	--description "Generate pseudorandom color form string seed"
 
 	set -l H 0  # 0 ... 360
-    set -l S 40  # 0 ... 100
-    set -l V 90  # 0 ... 100
+    set -l S 25  # 0 ... 100
+    set -l V 80  # 0 ... 100
 
 	set -l hash (echo $argv | md5sum | head -c 32)
 	for n in (seq 1 4 32)
@@ -14,7 +14,7 @@ function hline_prompt_generate_color \
 	# echo H $H S $S V $V
 
     set -l C (math --scale 3 "($V / 100) * ($S / 100)")
-    set -l X (math --scale 3 "$C * (1 - abs(($H / 60) % 2) - 1)")
+    set -l X (math --scale 3 "$C * (1 - abs(($H / 60) % 2 - 1))")
     set -l m (math --scale 3 "$V / 100 - $C")
 
 	# echo C $C X $X m $m

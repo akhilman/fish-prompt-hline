@@ -8,7 +8,7 @@ function fish_right_prompt \
 	set -q fish_color_status; or set -l fish_color_status --background red white
 	set -q fish_color_time; or set -l fish_color_time white
 	set -q fish_color_vcs
-		or set -l fish_color_venv (hline_prompt_generate_color (__fish_vcs_prompt))
+		or set -l fish_color_vcs (hline_prompt_generate_color (__fish_vcs_prompt))
 	set -q fish_color_venv
 		or set -l fish_color_venv (hline_prompt_generate_color $VIRTUAL_ENV)
 

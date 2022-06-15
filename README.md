@@ -14,37 +14,32 @@ Then restart fish or call `source ~/.config/fish/conf.d/prompt_hline_init.fish`
 
 ## Configuration
 
-Choose a colorscheme with
-[`fish_config`](https://fishshell.com/docs/current/cmds/fish_config.html).
-
-If you do not like the horizontal line color generated from the username and hostname change it with:
-
 ```fish
-set -U fish_color_hline RRGGBB
-```
+# Setup some colorscheme in fish's web app
+fish_config
 
-See `man set_color` for more options.
-
-Unset colors for user and host to allow prompt to generate them for you:
-
-```fish
-set -eU fish_color_user
-set -eU fish_color_host
-```
-
-Unset cwd color to generate it:
-
-```fish
-set -eU fish_color_cwd
-```
-
-Set colours of the right prompt:
-
-```fish
+# Setup right prompt colors
 set -U fish_color_duration blue
+set -U fish_color_hline grey  # if not generated
 set -U fish_color_njobs green
 set -U fish_color_status --background red white
 set -U fish_color_time white
-set -U fish_color_vcs yellow
-set -U fish_color_venv magenta
+set -U fish_color_vcs yellow  # if not generated
+set -U fish_color_venv magenta  # if not generated
+
+# Enable generated colors
+set -U fish_generate_color_cwd 1
+set -U fish_generate_color_hline 1
+set -U fish_generate_color_host 1
+set -U fish_generate_color_user 1
+set -U fish_generate_color_vcs 1
+set -U fish_generate_color_venv 1
+
+# Unset variable to disable generated colors
+# set -eU fish_generate_color_hline
+
+# Adjust generated colors
+set -U fish_generated_color_hue_offset 0  # 0 <= H <= 360
+set -U fish_generated_color_saturation 25  # 0 <= S <= 100
+set -U fish_generated_color_value 80  # 0 <= V <= 100
 ```

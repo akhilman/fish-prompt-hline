@@ -2,6 +2,41 @@
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
 # repaint
+function __fish_repaint_generate_cwd --on-variable fish_generate_color_cwd
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
+function __fish_repaint_generate_cwd_root --on-variable fish_generate_color_cwd_root
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
+function __fish_repaint_generate_hline --on-variable fish_generate_color_hline
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
+function __fish_repaint_generate_host --on-variable fish_generate_color_host
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
+function __fish_repaint_generate_user --on-variable fish_generate_color_user
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
+function __fish_repaint_generate_vcs --on-variable fish_generate_color_vcs
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
+function __fish_repaint_generate_venv --on-variable fish_generate_color_venv
+	if status --is-interactive
+		commandline -f repaint 2>/dev/null
+	end
+end
 function __fish_repaint_duration --on-variable fish_color_duration
 	if status --is-interactive
 		commandline -f repaint 2>/dev/null

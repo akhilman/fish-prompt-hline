@@ -1,5 +1,3 @@
-#/usr/bin/fish
-
 function fish_right_prompt \
 	--description "Display the right prompt"
 
@@ -7,21 +5,29 @@ function fish_right_prompt \
 	set -l last_pipestatus $pipestatus
 	set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
 
-	set -q fish_color_duration; or set -l fish_color_duration blue
-	set -q fish_color_njobs; or set -l fish_color_njobs green
-	set -q fish_color_status; or set -l fish_color_status --background red white
-	set -q fish_color_time; or set -l fish_color_time white
-	set -q fish_color_vcs
-		or set -l fish_color_vcs (hline_prompt_generate_color (__fish_vcs_prompt))
-	set -q fish_color_venv
-		or set -l fish_color_venv (hline_prompt_generate_color $VIRTUAL_ENV)
-
 	set -l duration_prompt
 	set -l time_prompt
 	set -l prompt_line
 	set -l vcs_prompt
 	set -l venv_prompt
 	set -l normal (set_color normal)
+
+	set -l fish_vcs_prompt (__fish_vcs_prompt)
+
+	set -l vcs_color
+	set -l venv_color
+
+	# Load static colors
+	set -q fish_color_vcs
+		and set vcs_color $fish_color_vcs
+	set -q fish_color_venv
+		and set venv_color $fish_color_venv
+
+	# Generate colors
+	set -q fish_generate_color_vcs
+		and set vcs_color (hline_prompt_generate_color $fish_vcs_prompt)
+	set -q fish_generate_color_venv
+		and set venv_color (hline_prompt_generate_color $VIRTUAL_ENV)
 
 	# pipestatus
 	# The status code was stollen from default fish prompt.
@@ -65,11 +71,11 @@ function fish_right_prompt \
 	end
 
 	# vcs
-	set vcs_prompt (set_color $fish_color_vcs) (__fish_vcs_prompt) $normal
+	set vcs_prompt (set_color $vcs_color) $fish_vcs_prompt $normal
 
 	# venv
 	if [ -n "$VIRTUAL_ENV" ]
-		set venv_prompt " " (set_color $fish_color_venv) "[" (basename $VIRTUAL_ENV) "]" $normal
+		set venv_prompt " " (set_color $venv_color) "[" (basename $VIRTUAL_ENV) "]" $normal
 	end
 
 	# time

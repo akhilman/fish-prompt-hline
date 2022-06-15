@@ -1,35 +1,41 @@
-#/usr/bin/fish
-
 function fish_prompt \
 	--description 'Display the left prompt'
-
-	set -q fish_color_hline; or set -l fish_color_hline (hline_prompt_generate_color {$USER}@{$hostname})
-	set -q fish_color_cwd; or set -l fish_color_cwd (hline_prompt_generate_color $PWD)
 
 	if not functions -q powerline-setup  # hack to disable when powerline used
 		echo (fish_hline_prompt)
 	end
+
+	set -l prefix
+
+	set -l hline_color
+	set -l cwd_color
+
+	# Load static colors
+	set -q fish_color_hline
+		and set hline_color $fish_color_hline
+
+	# Generate colors
+	set -q fish_generate_color_hline
+		and set hline_color (hline_prompt_generate_color {$USER}@{$hostname})
 
 	# Just calculate this once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname
 		set -g __fish_prompt_hostname (echo $hostname|cut -d . -f 1)
 	end
 
-	set -l color_cwd
-	set -l prefix
 	switch $USER
 	case root toor
 		if set -q fish_color_cwd_root
-			set color_cwd $fish_color_cwd_root
+			set cwd_color $fish_color_cwd_root
 		else
-			set color_cwd $fish_color_cwd
+			set cwd_color $fish_color_cwd
 		end
 		set suffix '#'
 	case '*'
-		set color_cwd $fish_color_cwd
+		set cwd_color $fish_color_cwd
 		set suffix '>'
 	end
 
 	set -l normal (set_color normal)
-	echo -n -s (set_color $fish_color_hline) "`--" $normal (set_color $color_cwd) $suffix $normal " " (fish_default_mode_prompt)
+	echo -n -s (set_color $hline_color) "`--" $normal (set_color $cwd_color) $suffix $normal " " (fish_default_mode_prompt)
 end

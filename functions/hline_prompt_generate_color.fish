@@ -1,15 +1,24 @@
 function hline_prompt_generate_color \
 	--description "Generate pseudorandom color form string seed"
 
-	set -l H 0  # 0 ... 360
-    set -l S 25  # 0 ... 100
-    set -l V 80  # 0 ... 100
+	set -q fish_generated_color_hue_offset; or set -l fish_generated_color_hue_offset 0
+	set -q fish_generated_color_saturation; or set -l fish_generated_color_saturation 25
+	set -q fish_generated_color_value; or set -l fish_generated_color_value 80
+
+	# Hue: 0 <= H <= 360
+	# Saturation: 0 <= S <= 100
+	# Value: 0 <= V <= 100
+
+	set -l H_offset $fish_generated_color_hue_offset
+    set -l S $fish_generated_color_saturation
+    set -l V $fish_generated_color_value
 
 	set -l hash (echo $argv | md5sum | head -c 32)
+	set -l H 0
 	for n in (seq 1 4 32)
 		set H (math --scale 0 "bitxor($H, 0x"(string sub -s $n -l 4 $hash)")")
 	end
-	set H (math --scale 3 "$H / 0xffff * 360")
+	set H (math --scale 3 "abs($H / 0xffff * 360 + $H_offset) % 360")
 
 	# echo H $H S $S V $V
 

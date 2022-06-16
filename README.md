@@ -2,6 +2,10 @@
 
 Fish re-implementation of the Adam2 shell prompt from zsh
 
+This prompt can also generate unique (almost) colors for the current directory,
+username, host, branch, virtual environment, and horizontal line.
+The horizontal line color is generated from the username and hostname.
+
 ![Screenshot](screenshot.png)
 
 ## Installation

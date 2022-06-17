@@ -1,15 +1,15 @@
 function hline_prompt_generate_color \
 	--description "Generate pseudorandom color form string seed"
 
-	set -l cached_color_keys (string split ":" $__hline_prompnt_generated_colors_cache_keys)
-	set -l cached_color_values (string split ":" $__hline_prompnt_generated_colors_cache_values)
-
+	# Key could be empty string
 	set -l cache_key (string escape --style=var "$argv")
-	if set -q __hline_prompnt_generated_colors_cache_keys
-		if set -l index (contains -i $cache_key $cached_color_keys)
-			echo $cached_color_values[$index]
-			return
-		end
+
+	string match -rgq \
+		'(?:^|,)'$cache_key'=(?<color>[[:xdigit:]]{6})' \
+		$_hline_prompt_generated_colors_cache  # sets $color
+	if [ ! -z "$color" ]
+		echo $color
+		return
 	end
 
 	set -l H_offset 0  # 0 <= H <= 360
@@ -70,8 +70,10 @@ function hline_prompt_generate_color \
 	
 	set -l color (printf "%02x%02x%02x" $R $G $B)
 
-	set -U __hline_prompnt_generated_colors_cache_keys (string join ":" $cache_key $cached_color_keys[1..128])
-	set -U __hline_prompnt_generated_colors_cache_values (string join ":" $color $cached_color_values[1..128])
+	set -U _hline_prompt_generated_colors_cache (\
+		string join "," "$cache_key=$color" (\
+			string match -rg '^((?:,?[[:word:]]*=[[:xdigit:]]{6}){0,64})' $_hline_prompt_generated_colors_cache \
+		))
 
 	echo $color
 end

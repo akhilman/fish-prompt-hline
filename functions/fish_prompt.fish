@@ -2,7 +2,7 @@ function fish_prompt \
 	--description 'Display the left prompt'
 
 	if not functions -q powerline-setup  # hack to disable when powerline used
-		echo (fish_hline_prompt)
+		echo (hline_prompt)
 	end
 
 	set -l prefix
@@ -15,7 +15,7 @@ function fish_prompt \
 		and set hline_color $fish_color_hline
 
 	# Generate colors
-	set -q fish_generate_color_hline
+	set -q hline_generate_color_hline
 		and set hline_color (hline_prompt_generate_color {$USER}@{$hostname})
 
 	# Just calculate this once, to save a few cycles when displaying the prompt

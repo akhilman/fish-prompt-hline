@@ -1,4 +1,4 @@
-# fish-prompt-hline
+# HLine prompt for Fish shell
 
 Fish re-implementation of the Adam2 shell prompt from zsh
 
@@ -32,18 +32,18 @@ set -U fish_color_vcs yellow  # if not generated
 set -U fish_color_venv magenta  # if not generated
 
 # Enable generated colors
-set -U fish_generate_color_cwd 1
-set -U fish_generate_color_hline 1
-set -U fish_generate_color_host 1
-set -U fish_generate_color_user 1
-set -U fish_generate_color_vcs 1
-set -U fish_generate_color_venv 1
+set -U hline_generate_color_cwd 1
+set -U hline_generate_color_hline 1
+set -U hline_generate_color_host 1
+set -U hline_generate_color_user 1
+set -U hline_generate_color_vcs 1
+set -U hline_generate_color_venv 1
 
 # Unset variable to disable generated colors
-# set -eU fish_generate_color_hline
+# set -eU hline_generate_color_hline
 
 # Adjust generated colors
-set -U fish_generated_color_hue_offset 0  # 0 <= H <= 360
-set -U fish_generated_color_saturation 25  # 0 <= S <= 100
-set -U fish_generated_color_value 80  # 0 <= V <= 100
+set -U hline_generated_color_hue_offset 0  # 0 <= H <= 360
+set -U hline_generated_color_saturation 25  # 0 <= S <= 100
+set -U hline_generated_color_value 80  # 0 <= V <= 100
 ```

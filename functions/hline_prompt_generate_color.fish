@@ -16,12 +16,12 @@ function hline_prompt_generate_color \
     set -l S 25  # 0 <= S <= 100
     set -l V 80  # 0 <= V <= 100
 
-	set -q fish_generated_color_hue_offset
-		and set H_offset $fish_generated_color_hue_offset
-	set -q fish_generated_color_saturation
-		and set S $fish_generated_color_saturation
-	set -q fish_generated_color_value
-		and set V $fish_generated_color_value
+	set -q hline_generated_color_hue_offset
+		and set H_offset $hline_generated_color_hue_offset
+	set -q hline_generated_color_saturation
+		and set S $hline_generated_color_saturation
+	set -q hline_generated_color_value
+		and set V $hline_generated_color_value
 
 	set -l hash (echo $argv | md5sum | head -c 32)
 	set -l H 0

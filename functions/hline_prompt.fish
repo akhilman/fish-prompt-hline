@@ -2,7 +2,7 @@
 # Bell and execution time
 ##
 
-function fish_hline_prompt \
+function hline_prompt \
 	--description "Draw horizontal line over shell prompt"
 
 	set -l prompt_left
@@ -25,14 +25,14 @@ function fish_hline_prompt \
 		or set user_color $fish_color_user
 
 	# Generate colors
-	set -q fish_generate_color_hline
+	set -q hline_generate_color_hline
 		and set hline_color (hline_prompt_generate_color {$USER}@{$hostname})
-	set -q fish_generate_color_host
+	set -q hline_generate_color_host
 		and set host_color (hline_prompt_generate_color $hostname)
-	set -q fish_generate_color_user
+	set -q hline_generate_color_user
 		and set user_color (hline_prompt_generate_color $USER)
 
-	if set -q fish_generate_color_cwd
+	if set -q hline_generate_color_cwd
 		set cwd_color (hline_prompt_generate_color $PWD)
 	else if [ $USER = root -o $USER = toor ]; and set -q fish_color_cwd_root
 		set cwd_color $fish_color_cwd_root

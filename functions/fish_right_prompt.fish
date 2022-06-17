@@ -24,9 +24,9 @@ function fish_right_prompt \
 		and set venv_color $fish_color_venv
 
 	# Generate colors
-	set -q fish_generate_color_vcs
+	set -q hline_generate_color_vcs
 		and set vcs_color (hline_prompt_generate_color $fish_vcs_prompt)
-	set -q fish_generate_color_venv
+	set -q hline_generate_color_venv
 		and set venv_color (hline_prompt_generate_color $VIRTUAL_ENV)
 
 	# pipestatus

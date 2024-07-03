@@ -53,15 +53,19 @@ function fish_right_prompt \
         set -l s (math -s0 "$CMD_DURATION / 1000 % 60")
 
         if [ $d -gt 0 ]
-            set duration_prompt $duration_prompt " " $d d
+            set -a duration_prompt " " $d d
         end
         if [ $h -gt 0 ]
-            set duration_prompt $duration_prompt " " $h h
+            set -a duration_prompt " " $h h
         end
-        if [ $m -gt 0 ]
-            set duration_prompt $duration_prompt " " $m m
+        if [ $m -gt 0 ]; and [ $d -eq 0 ]
+            set -a duration_prompt " " $m m
         end
-        set duration_prompt $duration_prompt " " $s s $normal
+        if [ $s -gt 0 ]; and [ $d -eq 0 ]; and [ $h -eq 0 ]
+            set -a duration_prompt " " $s s
+        end
+
+        set -a duration_prompt $normal
     end
 
     # jobs

@@ -38,23 +38,24 @@ function hline_prompt_generate_color \
     set -L G
     set -L B
 
-    if [ (math --scale 0 $H) -le 60 ]
+    set H (math --scale 0 $H)
+    if [ $H -le 60 ]
         set R $C
         set G $X
         set B 0
-    else if [ (math --scale 0 $H) -le 120 ]
+    else if [ $H -le 120 ]
         set R $X
         set G $C
         set B 0
-    else if [ (math --scale 0 $H) -le 180 ]
+    else if [ $H -le 180 ]
         set R 0
         set G $C
         set B $X
-    else if [ (math --scale 0 $H) -le 240 ]
+    else if [ $H -le 240 ]
         set R 0
         set G $X
         set B $C
-    else if [ (math --scale 0 $H) -le 300 ]
+    else if [ $H -le 300 ]
         set R $X
         set G 0
         set B $C

@@ -87,3 +87,8 @@ function fish_right_prompt \
 
     echo -sn $pipestatus_prompt $duration_prompt $njobs_prompt $vcs_prompt $venv_prompt $time_prompt " "
 end
+
+# Workaround for https://github.com/fish-shell/fish-shell/issues/12255
+if string match --quiet --regex '4\.3\.[012]' $version
+    functions --erase fish_right_prompt
+end

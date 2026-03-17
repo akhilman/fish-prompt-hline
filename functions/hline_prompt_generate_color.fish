@@ -71,7 +71,7 @@ function hline_prompt_generate_color \
 
     set -l color (printf "%02x%02x%02x" $R $G $B)
 
-    set -U _hline_prompt_generated_colors_cache ( \
+    set -g _hline_prompt_generated_colors_cache ( \
 		string join "," "$cache_key=$color" ( \
 			string match -rg \
 				'^((?:,?[[:word:]]*=[[:xdigit:]]{6}){0,64})' \

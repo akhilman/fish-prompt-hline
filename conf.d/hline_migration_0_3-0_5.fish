@@ -1,6 +1,6 @@
 if set -q _hline_prompt_version; and string match -q "0.3" $_hline_prompt_version
     set -l frozen_config $__fish_config_dir/conf.d/fish_prompt_hline_fronzen_config.fish
-    echo \# Fish_prompt_hline v0.3 does not uses universal variables anymore. | tee $frozen_config
+    echo \# Fish_prompt_hline v0.5 does not uses universal variables anymore. | tee $frozen_config
     echo \# All current settings are dumped to $frozen_config | tee -a $frozen_config
     echo \# >>$frozen_config
     echo \# See also https://fishshell.com/docs/4.5/relnotes.html#fish-4-3-0-released-december-28-2025 . >>$frozen_config

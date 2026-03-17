@@ -61,7 +61,7 @@ if set -q _hline_prompt_version; and string match -q "0.3" $_hline_prompt_versio
     end
 
     if set -qU hline_generated_color_hue_offset
-        echo "set -g hline_generated_color_hue_offset $hline_generated_color_hue_offset" >$frozen_config
+        echo "set -g hline_generated_color_hue_offset $hline_generated_color_hue_offset" >>$frozen_config
         set -eU hline_generated_color_hue_offset
     end
     if set -qU hline_generated_color_saturation

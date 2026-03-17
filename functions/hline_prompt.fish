@@ -5,24 +5,21 @@
 function hline_prompt \
     --description "Draw horizontal line over shell prompt"
 
-    set -l prompt_left
-    set -l prompt_right
-    set -l prompt_line
+    set -l prompt_left normal
+    set -l prompt_right normal
+    set -l prompt_line normal
 
-    set -l color_cwd
-    set -l hline_color
-    set -l host_color
-    set -l user_color
+    set -l color_cwd normal
+    set -l hline_color normal
+    set -l host_color normal
+    set -l user_color normal
 
     # Load static colors
-    set -q fish_color_cwd
-    or set cwd_color $fish_color_cwd
-    set -q fish_color_hline
-    or set hline_color $fish_color_hline
-    set -q fish_color_host
-    or set host_color $fish_color_host
-    set -q fish_color_user
-    or set user_color $fish_color_user
+    set -q fish_color_cwd; and set cwd_color $fish_color_cwd
+    fish_is_root_user; and set -q fish_color_cwd_root; and set cwd_color $fish_color_cwd_root
+    set -q fish_color_hline; and set hline_color $fish_color_hline; or set hline_color $cwd_color
+    set -q fish_color_host; and set host_color $fish_color_host
+    set -q fish_color_user; and set user_color $fish_color_user
 
     # Generate colors
     set -q hline_generate_color_hline
@@ -52,6 +49,7 @@ function hline_prompt \
     end
 
     set -l normal (set_color normal)
+
     set prompt_left (set_color $hline_color) "(" $normal (set_color $cwd_color) (prompt_pwd) $normal (set_color $hline_color) ")" $normal
     set prompt_right (set_color $hline_color) "(" $normal (set_color $user_color) "$USER" $normal @ (set_color $host_color) "$__fish_prompt_hostname" (set_color $hline_color) ")" $normal
 

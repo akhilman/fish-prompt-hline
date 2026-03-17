@@ -10,18 +10,15 @@ function fish_right_prompt \
     set -l prompt_line
     set -l vcs_prompt
     set -l venv_prompt
-    set -l normal (set_color normal)
 
     set -l fish_vcs_prompt (__fish_vcs_prompt)
 
-    set -l vcs_color
-    set -l venv_color
+    set -l vcs_color normal
+    set -l venv_color normal
 
     # Load static colors
-    set -q fish_color_vcs
-    and set vcs_color $fish_color_vcs
-    set -q fish_color_venv
-    and set venv_color $fish_color_venv
+    set -q fish_color_vcs; and set vcs_color $fish_color_vcs
+    set -q fish_color_venv; and set venv_color $fish_color_venv
 
     # Generate colors
     set -q hline_generate_color_vcs
@@ -41,6 +38,8 @@ function fish_right_prompt \
     set -l status_color (set_color $fish_color_status)
     set -l statusb_color (set_color $bold_flag $fish_color_status)
     set -l pipestatus_prompt (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
+
+    set -l normal (set_color normal)
 
     # duration
     if test -n "$CMD_DURATION" -a "$CMD_DURATION" -gt 10000
